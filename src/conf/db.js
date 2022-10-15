@@ -1,11 +1,3 @@
-/*
- * @Description: 存储配置
- * @Author: 王振
- * @Date: 2021-07-09 10:27:51
- * @LastEditors: 王振
- * @LastEditTime: 2021-07-09 10:29:52
- */
-
 const { isProd } = require('../utils/env');
 
 // 本地Redis配置

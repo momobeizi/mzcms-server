@@ -1,10 +1,3 @@
-/*
- * @Description: 用户-路由 user-API
- * @Author: 王振
- * @Date: 2021-07-09 10:42:36
- * @LastEditors: 王振
- * @LastEditTime: 2021-07-09 10:43:38
- */
 
 // 引入koa路由  该写法等同于 const Router = require('koa-router'); const router = new Router()
 const router = require('koa-router')();

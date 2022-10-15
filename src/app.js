@@ -10,6 +10,8 @@ const cors = require('koa2-cors'); // 跨域
 const jwt = require('jsonwebtoken');
 const util = require('util');
 const verify = util.promisify(jwt.verify);
+const path = require('path');
+const koaStatic = require('koa-static');
 
 // 获取密匙
 const { SECRET, No_Verification } = require('./conf/constant');
@@ -25,7 +27,7 @@ app.use(
 );
 app.use(json());
 app.use(logger());
-app.use(require('koa-static')(__dirname + '/public'));
+app.use(koaStatic(path.join(__dirname + '../../public')));
 
 app.use(
   views(__dirname + '/views', {

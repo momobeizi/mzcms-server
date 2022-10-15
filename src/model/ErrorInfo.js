@@ -61,4 +61,9 @@ module.exports = {
     code: 10012,
     message: '操作文章失败',
   },
+  // 文件上传失败
+  uploadFailInfo: {
+    code: 10013,
+    message: '文件上传失败',
+  },
 };
