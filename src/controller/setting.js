@@ -14,14 +14,16 @@ const { uploadFailInfo } = require('../model/ErrorInfo');
  * @param {object} ctx 上下文
  */
 async function uploadFile(ctx) {
-  console.log(ctx);
+  console.log(ctx.req.files);
   let result = [];
   if (ctx.req.files.file.length > 1) {
     ctx.req.files.file.forEach((item) => {
-      result.push(`${DOMAIN}/${item.destination}/${item.filename}`);
+      result.push(`${DOMAIN}${item.destination.slice(6)}/${item.filename}`);
     });
   } else {
-    result = `${DOMAIN}/${ctx.req.files.file[0].destination}/${ctx.req.files.file[0].filename}`;
+    result = `${DOMAIN}${ctx.req.files.file[0].destination.slice(6)}/${
+      ctx.req.files.file[0].filename
+    }`;
   }
   console.log(result);
   if (result) {
