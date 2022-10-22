@@ -37,10 +37,6 @@ const SCHEMA = {
       type: 'number',
       minimum: 1,
     },
-    id: {
-      type: 'number',
-      minimum: 1,
-    },
   },
 };
 
