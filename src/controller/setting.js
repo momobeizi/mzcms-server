@@ -8,6 +8,7 @@
 const { DOMAIN } = require('../conf/constant');
 const { SuccessModel, ErrorModel } = require('../model/ResModel');
 const { uploadFailInfo } = require('../model/ErrorInfo');
+const send = require('koa-send');
 
 /**
  * 上传文件
@@ -34,6 +35,16 @@ async function uploadFile(ctx) {
   return new ErrorModel(uploadFailInfo);
 }
 
+/**
+ * 下载大文件
+ * @param {object} ctx 上下文
+ */
+async function downloadBigFile(ctx) {
+  const filePath = 'public/upload/20221022/big.zip';
+  ctx.attachment(filePath);
+  await send(ctx, filePath);
+}
 module.exports = {
   uploadFile,
+  downloadBigFile,
 };
