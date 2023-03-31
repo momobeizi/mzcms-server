@@ -16,12 +16,12 @@ redisClient.on('error', (err) => {
 });
 
 /**
- * redis set
+ * redis redisSet
  * @param {string} key 键
  * @param {string} val 值
- * @param {number} timeout 过期时间，单位 s
+ * @param {number} timeout 过期时间，单位 s默认4个小时
  */
-function set(key, val, timeout = 60 * 60) {
+function redisSet(key, val, timeout = 60 * 60 * 4) {
   if (typeof val === 'object') {
     val = JSON.stringify(val);
   }
@@ -30,10 +30,10 @@ function set(key, val, timeout = 60 * 60) {
 }
 
 /**
- * redis get
+ * redis redisGet
  * @param {string} key 键
  */
-function get(key) {
+function redisGet(key) {
   const promise = new Promise((resolve, reject) => {
     redisClient.get(key, (err, val) => {
       if (err) {
@@ -56,6 +56,6 @@ function get(key) {
 }
 
 module.exports = {
-  set,
-  get,
+  redisSet,
+  redisGet,
 };

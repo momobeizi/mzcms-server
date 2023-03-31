@@ -12,6 +12,8 @@ const util = require('util');
 const verify = util.promisify(jwt.verify);
 const path = require('path');
 const koaStatic = require('koa-static');
+const { redisSet, redisGet } = require('./cache/_redis')
+
 
 // 获取密匙
 const { SECRET, No_Verification } = require('./conf/constant');
@@ -40,7 +42,10 @@ app.use(async (ctx, next) => {
   const start = new Date();
   const mztoken = ctx.cookies.get('mztoken');
   if (mztoken) {
-    ctx.user = await verify(mztoken, SECRET);
+    let redisInfo = await verify(mztoken, SECRET)
+    if (redisInfo) {
+      ctx.user = await redisGet(redisInfo.uuid)
+    }
   }
   await next();
   const ms = new Date() - start;
