@@ -1,5 +1,5 @@
 const seq = require('../seq');
-const { STRING, DECIMAL } = require('../types');
+const { STRING, DECIMAL, NUMBER } = require('../types');
 
 // contentCategory数据库表，sequelize会在数据库中自动以复数建表
 const ContentCategory = seq.define('contentCategory', {
@@ -24,9 +24,9 @@ const ContentCategory = seq.define('contentCategory', {
     comment: 'url',
   },
   enable: {
-    type: DECIMAL,
+    type: STRING,
     allowNull: false,
-    defaultValue: 1,
+    defaultValue: 0,
     comment: '是否启用(0:停用，1:启用)',
   },
   comments: {

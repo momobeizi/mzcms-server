@@ -5,7 +5,7 @@ const SCHEMA = {
   type: 'object',
   properties: {
     parentId: {
-      type: 'number',
+      type: 'string',
       maxLength: 255,
     },
     name: {
