@@ -32,7 +32,8 @@ router.post('/isExist', async (ctx, next) => {
 router.post('/login', async (ctx, next) => {
   const { userName, password } = ctx.request.body;
   const result = await login(ctx, userName, password);
-  ctx.cookies.set('mztoken', result.data.token, {
+  console.log(result);
+  ctx.cookies.set('mztoken', result?.data?.token, {
     domain: 'localhost', // 设置 cookie 的域
     path: '/', // 设置 cookie 的路径
     maxAge: 3 * 60 * 60 * 1000, // cookie 的有效时间 ms

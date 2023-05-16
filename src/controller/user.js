@@ -20,9 +20,8 @@ const doCrypto = require('../utils/cryp');
 const jwt = require('jsonwebtoken');
 const util = require('util');
 const verify = util.promisify(jwt.verify);
-const { redisSet, redisGet } = require('../cache/_redis')
+const { redisSet, redisGet } = require('../cache/_redis');
 const UUID = require('uuid');
-
 
 /**
  * 用户名是否存在
@@ -76,16 +75,16 @@ async function register({ userName, password }) {
 async function login(ctx, userName, password) {
   // 获取用户信息
   const userInfo = await getUserInfo(userName, doCrypto(password));
-  console.log(userInfo)
+  console.log(userInfo);
   if (!userInfo) {
     // 登录失败
     return new ErrorModel(loginFailInfo);
   }
 
   // 登录成功,使用jwt加密用户信息，返回token
-  let uuid = UUID.v1().replace(/-/g, '')
-  await redisSet(uuid, userInfo)
-  const token = jwt.sign({uuid}, SECRET, { expiresIn: '4h' });
+  const uuid = UUID.v1().replace(/-/g, '');
+  await redisSet(uuid, userInfo);
+  const token = jwt.sign({ uuid }, SECRET, { expiresIn: '4h' });
   const data = { token, userInfo };
   return new SuccessModel(data);
 }
