@@ -4,9 +4,9 @@ const {
   servicesEditContentCategory,
   servicesFindOneContentCategory,
   servicesFindAllContentCategory,
-} = require('../services/contentCategory');
-const { SuccessModel, ErrorModel } = require('../model/ResModel');
-const { addContentCategoryFailInfo } = require('../model/ErrorInfo');
+} = require('../../services/admin/contentCategory');
+const { SuccessModel, ErrorModel } = require('../../model/ResModel');
+const { addContentCategoryFailInfo } = require('../../model/ErrorInfo');
 
 /**
  * 添加分类

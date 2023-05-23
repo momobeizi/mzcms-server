@@ -4,8 +4,8 @@ const {
   updateUser,
   servicesGetList,
   servicesDeleteUser,
-} = require('../services/user');
-const { SuccessModel, ErrorModel } = require('../model/ResModel');
+} = require('../../services/admin/user');
+const { SuccessModel, ErrorModel } = require('../../model/ResModel');
 const {
   registerUserNameNotExistInfo,
   registerUserNameExistInfo,
@@ -14,13 +14,13 @@ const {
   changeInfoFailInfo,
   changePasswordFailInfo,
   deleteUserFailInfo,
-} = require('../model/ErrorInfo');
-const { SECRET } = require('../conf/constant');
-const doCrypto = require('../utils/cryp');
+} = require('../../model/ErrorInfo');
+const { SECRET } = require('../../conf/constant');
+const doCrypto = require('../../utils/cryp');
 const jwt = require('jsonwebtoken');
 const util = require('util');
 const verify = util.promisify(jwt.verify);
-const { redisSet, redisGet } = require('../cache/_redis');
+const { redisSet, redisGet } = require('../../cache/_redis');
 const UUID = require('uuid');
 
 /**

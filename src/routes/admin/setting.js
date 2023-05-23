@@ -1,6 +1,6 @@
 // 引入koa路由  该写法等同于 const Router = require('koa-router'); const router = new Router()
 const router = require('koa-router')();
-const { uploadFile, downloadBigFile } = require('../../controller/setting');
+const { uploadFile, downloadBigFile } = require('../../controller/admin/setting');
 const { genValidator } = require('../../middlewares/validator');
 const contentCategoryValidate = require('../../validator/contentCategory');
 const { upload } = require('../../middlewares/upload');

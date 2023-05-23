@@ -9,7 +9,7 @@ const {
   getList,
   deleteUser,
   getUsersInfo,
-} = require('../../controller/user');
+} = require('../../controller/admin/user');
 const { genValidator } = require('../../middlewares/validator');
 const userValidate = require('../../validator/user');
 

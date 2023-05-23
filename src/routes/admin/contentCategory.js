@@ -6,7 +6,7 @@ const {
   editContentCategory,
   findOneContentCategory,
   findAllContentCategory,
-} = require('../../controller/contentCategory');
+} = require('../../controller/admin/contentCategory');
 const { genValidator } = require('../../middlewares/validator');
 const contentCategoryValidate = require('../../validator/contentCategory');
 

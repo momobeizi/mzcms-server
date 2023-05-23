@@ -22,7 +22,7 @@
 │   ├── services               # 服务层
 │   ├── utils                  # 工具函数
 │   ├── validator              # 校验
-│   ├── views                  # 前端模版文件-只做服务端忽略
+│   ├── views                  # 前端模版文件
 │   ├── app.js                 # 入口文件
 ├── test                       # 测试
 ├── .cz-config.js              # 集成 Commitizen 实现规范提交配置文件

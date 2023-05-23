@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
-const { User } = require('../db/model/index');
-const { formatUser, handlerRows } = require('./_format');
+const { User } = require('../../db/model/index');
+const { formatUser, handlerRows } = require('../_format');
 
 /**
  * 获取用户信息

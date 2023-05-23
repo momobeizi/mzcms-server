@@ -4,9 +4,9 @@ const {
   servicesEditContent,
   servicesFindOneContent,
   servicesFindAllContent,
-} = require('../services/content');
-const { SuccessModel, ErrorModel } = require('../model/ResModel');
-const { addContentFailInfo } = require('../model/ErrorInfo');
+} = require('../../services/admin/content');
+const { SuccessModel, ErrorModel } = require('../../model/ResModel');
+const { addContentFailInfo } = require('../../model/ErrorInfo');
 
 /**
  * 添加文章

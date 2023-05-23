@@ -1,10 +1,12 @@
 // 引入koa路由  该写法等同于 const Router = require('koa-router'); const router = new Router()
 const router = require('koa-router')();
-// 路由前缀
-// router.prefix('/api/index');
+const path = require('path');
 
 // 首页
 router.get('/', '', async (ctx, next) => {
+  // 静态页面路径
+  const indexPath = path.join(__dirname, 'public', 'index.html');
+
   ctx.type = 'html';
   ctx.body = `<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} a{color:#2E5CD5;cursor:
       pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family:

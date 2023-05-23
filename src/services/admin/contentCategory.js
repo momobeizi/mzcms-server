@@ -1,6 +1,5 @@
-const { Op } = require('sequelize');
-const { ContentCategory } = require('../db/model/index');
-const { handlerRows } = require('./_format');
+const { ContentCategory } = require('../../db/model/index');
+const { handlerRows } = require('../_format');
 
 /**
  * 添加类别

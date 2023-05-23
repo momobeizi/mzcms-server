@@ -5,9 +5,9 @@
 //   servicesFindOneContentCategory,
 //   servicesFindAllContentCategory,
 // } = require('../services/contentCategory');
-const { DOMAIN } = require('../conf/constant');
-const { SuccessModel, ErrorModel } = require('../model/ResModel');
-const { uploadFailInfo } = require('../model/ErrorInfo');
+const { DOMAIN } = require('../../conf/constant');
+const { SuccessModel, ErrorModel } = require('../../model/ResModel');
+const { uploadFailInfo } = require('../../model/ErrorInfo');
 const send = require('koa-send');
 
 /**

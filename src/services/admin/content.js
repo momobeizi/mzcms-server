@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
-const { Content } = require('../db/model/index');
-const { handlerRows } = require('./_format');
+const { Content } = require('../../db/model/index');
+const { handlerRows } = require('../_format');
 
 /**
  * 添加文章

@@ -6,7 +6,7 @@ const {
   editContent,
   findOneContent,
   findAllContent,
-} = require('../../controller/content');
+} = require('../../controller/admin/content');
 const { genValidator } = require('../../middlewares/validator');
 const contentValidate = require('../../validator/content');
 
