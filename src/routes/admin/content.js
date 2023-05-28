@@ -28,6 +28,7 @@ router.post('/add', genValidator(contentValidate), async (ctx, next) => {
     label,
     contentType,
   } = ctx.request.body;
+  console.log('imgUrl', imgUrl);
   ctx.body = await addContent(ctx, {
     title,
     abstract,

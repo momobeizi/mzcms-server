@@ -8,7 +8,7 @@ const { upload } = require('../../middlewares/upload');
 // 路由前缀
 router.prefix('/api/setting');
 
-// 查询所有文档类别
+// 上传文件
 router.post('/uploadFile', upload.fields([{ name: 'file' }]), async (ctx, next) => {
   ctx.body = await uploadFile(ctx);
 });
@@ -16,5 +16,6 @@ router.post('/uploadFile', upload.fields([{ name: 'file' }]), async (ctx, next) 
 router.post('/downloadBigFile', async (ctx, next) => {
   await downloadBigFile(ctx);
 });
+
 // 导出路由
 module.exports = router;
