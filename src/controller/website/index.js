@@ -1,26 +1,19 @@
-const { servicesFindAllContent } = require('../services/website/index');
+const ejs = require('ejs');
+const path = require('path');
+const fs = require('fs');
 
 /**
- * 查询文章列表
- * @param {object} ctx 上下文
- * @param {string} title 文章名称
- * @param {string} pageSize 每页大小
- * @param {string} pageNum 当前页
+ * 渲染首页
  */
-async function findAllContent(ctx, { title, pageSize, pageNum }) {
-  const result = await servicesFindAllContent({ title, pageSize, pageNum });
-  if (result) {
-    // 修改成功
-    return new SuccessModel(result);
-  }
-  // 修改失败;
-  return new ErrorModel(addContentFailInfo);
+async function renderWebsiteIndex() {
+  const templateFilePath = path.join(__dirname, '../../../public/template', 'index.ejs');
+  const template = fs.readFileSync(templateFilePath, 'utf-8');
+  return ejs.render(template, {
+    title: '首页',
+    message: '欢迎访问我的网站',
+  });
 }
 
 module.exports = {
-  addContent,
-  deleteContent,
-  editContent,
-  findOneContent,
-  findAllContent,
+  renderWebsiteIndex,
 };
