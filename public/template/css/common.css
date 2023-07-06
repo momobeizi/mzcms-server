@@ -1,0 +1,45 @@
+/* 头部导航栏 */
+.nav-header {
+  width: 100%;
+  height: 60px;
+  padding: 0 26px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.website-logo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.website-logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* 头部导航菜单栏 */
+.nav-menu {
+  height: 100%;
+}
+
+.nav-menu .nav-menu-item {
+  padding: 0 20px;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  float: left;
+}
+
+.nav-menu .nav-menu-item a {
+  color: #000;
+  text-decoration: none;
+}
