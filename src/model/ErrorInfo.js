@@ -66,4 +66,14 @@ module.exports = {
     code: 10013,
     message: '文件上传失败',
   },
+  // 里程修改失败
+  addOdometerFailInfo: {
+    code: 10014,
+    message: '里程修改失败',
+  },
+  // 里程列表查询失败
+  findOdometerListFailInfo: {
+    code: 10015,
+    message: '里程列表查询失败',
+  },
 };

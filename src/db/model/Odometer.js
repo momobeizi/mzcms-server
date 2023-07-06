@@ -1,13 +1,18 @@
 const seq = require('../seq');
-const { STRING, DECIMAL } = require('../types');
+const { STRING, DECIMAL, INTEGER } = require('../types');
 
 // users数据库表，sequelize会在数据库中自动以复数建表
 const Odometer = seq.define('odometer', {
+  userId: {
+    type: INTEGER,
+    allowNull: false,
+    unique: true,
+    comment: '用户id',
+  },
   userName: {
     type: STRING,
     allowNull: false,
-    unique: true,
-    comment: '用户名，唯一',
+    comment: '用户名',
   },
   date: {
     type: STRING,
@@ -17,16 +22,17 @@ const Odometer = seq.define('odometer', {
   mileage: {
     type: STRING,
     allowNull: false,
-    comment: '里程数(km)',
+    comment: '里程数',
   },
   refuelingAmount: {
     type: DECIMAL,
     allowNull: false,
-    comment: '加油金额(元)',
+    comment: '加油金额',
   },
   oilQuantity: {
     type: DECIMAL,
-    comment: '油量（升）',
+    allowNull: false,
+    comment: '油量',
   },
 });
 
