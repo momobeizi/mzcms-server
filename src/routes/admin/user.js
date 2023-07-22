@@ -33,7 +33,6 @@ router.post('/isExist', async (ctx, next) => {
 router.post('/login', async (ctx, next) => {
   const { userName, password } = ctx.request.body;
   const result = await login(ctx, userName, password);
-  console.log(result);
   ctx.cookies.set('mztoken', result?.data?.token, {
     domain: 'localhost', // 设置 cookie 的域
     path: '/', // 设置 cookie 的路径
@@ -47,12 +46,6 @@ router.post('/login', async (ctx, next) => {
 // 用户退出登陆
 router.get('/logout', async (ctx, next) => {
   const result = await logout(ctx);
-  // ctx.cookies.set('mztoken', '', {
-  //   domain: 'localhost', // 设置 cookie 的域
-  //   path: '/', // 设置 cookie 的路径
-  //   maxAge: 0, // cookie 的有效时间 ms
-  //   overwrite: true, // 是否要覆盖已有的 cookie 设置
-  // });
   ctx.body = result;
 });
 
