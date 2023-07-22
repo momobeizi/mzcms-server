@@ -20,7 +20,7 @@ const doCrypto = require('../../utils/cryp');
 const jwt = require('jsonwebtoken');
 const util = require('util');
 const verify = util.promisify(jwt.verify);
-const { redisSet, redisGet } = require('../../cache/_redis');
+const { redisSet, redisGet, redisDel } = require('../../cache/_redis');
 const UUID = require('uuid');
 
 /**
@@ -75,7 +75,6 @@ async function register({ userName, password }) {
 async function login(ctx, userName, password) {
   // 获取用户信息
   const userInfo = await getUserInfo(userName, doCrypto(password));
-  console.log(userInfo);
   if (!userInfo) {
     // 登录失败
     return new ErrorModel(loginFailInfo);
@@ -87,6 +86,21 @@ async function login(ctx, userName, password) {
   const token = jwt.sign({ uuid }, SECRET, { expiresIn: '4h' });
   const data = { token, userInfo };
   return new SuccessModel(data);
+}
+
+/**
+ * 退出登陆
+ * @param {Object} ctx ctx上下文
+ */
+async function logout(ctx) {
+  await redisDel(ctx.uuid);
+  ctx.cookies.set('mztoken', '', {
+    domain: 'localhost', // 设置 cookie 的域
+    path: '/', // 设置 cookie 的路径
+    maxAge: 0, // cookie 的有效时间 ms
+    overwrite: true, // 是否要覆盖已有的 cookie 设置
+  });
+  return new SuccessModel({ message: '退出成功' });
 }
 
 /**
@@ -202,4 +216,5 @@ module.exports = {
   getList,
   deleteUser,
   getUsersInfo,
+  logout,
 };

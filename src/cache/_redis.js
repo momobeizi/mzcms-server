@@ -55,7 +55,16 @@ function redisGet(key) {
   return promise;
 }
 
+/**
+ * redis redisDel
+ * @param {string} key 键
+ */
+function redisDel(key) {
+  redisClient.del(key);
+}
+
 module.exports = {
   redisSet,
   redisGet,
+  redisDel,
 };

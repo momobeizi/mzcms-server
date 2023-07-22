@@ -9,6 +9,7 @@ const {
   getList,
   deleteUser,
   getUsersInfo,
+  logout,
 } = require('../../controller/admin/user');
 const { genValidator } = require('../../middlewares/validator');
 const userValidate = require('../../validator/user');
@@ -40,6 +41,18 @@ router.post('/login', async (ctx, next) => {
     httpOnly: true, // 是否要设置 httpOnly
     overwrite: true, // 是否要覆盖已有的 cookie 设置
   });
+  ctx.body = result;
+});
+
+// 用户退出登陆
+router.get('/logout', async (ctx, next) => {
+  const result = await logout(ctx);
+  // ctx.cookies.set('mztoken', '', {
+  //   domain: 'localhost', // 设置 cookie 的域
+  //   path: '/', // 设置 cookie 的路径
+  //   maxAge: 0, // cookie 的有效时间 ms
+  //   overwrite: true, // 是否要覆盖已有的 cookie 设置
+  // });
   ctx.body = result;
 });
 

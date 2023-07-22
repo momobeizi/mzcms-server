@@ -38,6 +38,7 @@ app.use(async (ctx, next) => {
     const redisInfo = await verify(mztoken, SECRET);
     if (redisInfo) {
       ctx.user = await redisGet(redisInfo.uuid);
+      ctx.uuid = redisInfo.uuid;
     }
   }
   await next();
