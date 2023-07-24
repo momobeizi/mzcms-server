@@ -50,13 +50,13 @@ router.get('/logout', async (ctx, next) => {
 });
 
 // 修改个人信息
-router.patch('/changeInfo', async (ctx, next) => {
-  const { nickName, picture } = ctx.request.body;
-  ctx.body = await changeInfo(ctx, { nickName, picture });
+router.post('/changeInfo', async (ctx, next) => {
+  const { nickName, picture, gender } = ctx.request.body;
+  ctx.body = await changeInfo(ctx, { nickName, picture, gender });
 });
 
 // 修改个人密码
-router.patch('/changePassword', genValidator(userValidate), async (ctx, next) => {
+router.post('/changePassword', genValidator(userValidate), async (ctx, next) => {
   const { password, newPassword } = ctx.request.body;
   ctx.body = await changePassword(ctx, { password, newPassword });
 });

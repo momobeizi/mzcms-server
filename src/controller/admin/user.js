@@ -110,11 +110,9 @@ async function logout(ctx) {
  * @param {string} city 城市
  * @param {string} picture 头像
  */
-async function changeInfo(ctx, { nickName, picture }) {
+async function changeInfo(ctx, { nickName, picture, gender }) {
   // 解析token，获取用户信息
-  const token = ctx.header.authorization;
-  const payload = await verify(token.split(' ')[1], SECRET);
-  const { userName } = payload;
+  const { userName } = ctx.user;
   if (!nickName) {
     nickName = userName;
   }
@@ -122,6 +120,7 @@ async function changeInfo(ctx, { nickName, picture }) {
     {
       newNickName: nickName,
       newPicture: picture,
+      newGender: gender,
     },
     { userName }
   );
