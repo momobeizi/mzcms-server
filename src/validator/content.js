@@ -16,12 +16,10 @@ const SCHEMA = {
       type: 'string',
     },
     status: {
-      type: 'number',
-      minimum: 0,
-      maximum: 1,
+      type: 'string',
     },
     contentCategory: {
-      type: 'number',
+      type: 'string',
     },
     keywords: {
       type: 'string',

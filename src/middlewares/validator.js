@@ -10,6 +10,7 @@ function genValidator(validateFn) {
   async function validator(ctx, next) {
     // 校验
     const data = ctx.request.body;
+    console.log(data);
     const error = validateFn(data);
     if (error) {
       console.log(error);

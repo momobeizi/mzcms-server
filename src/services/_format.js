@@ -1,5 +1,6 @@
 // 获取默认头像
 const { DEFAULT_PICTURE } = require('../conf/constant');
+const moment = require('moment');
 
 /**
  * @description: 用户默认头像
@@ -38,6 +39,12 @@ function handlerRows(list) {
     const resultArr = [];
     // 数组
     list.forEach((el) => {
+      if (el.dataValues.createdAt) {
+        el.dataValues.createdAt = moment(el.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      }
+      if (el.dataValues.updatedAt) {
+        el.dataValues.updatedAt = moment(el.dataValues.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      }
       resultArr.push(el.dataValues);
     });
     return resultArr;
