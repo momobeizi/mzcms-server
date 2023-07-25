@@ -49,10 +49,22 @@ router.get('/logout', async (ctx, next) => {
   ctx.body = result;
 });
 
-// 修改个人信息
+// 自己修改个人信息
 router.post('/changeInfo', async (ctx, next) => {
   const { nickName, picture, gender } = ctx.request.body;
   ctx.body = await changeInfo(ctx, { nickName, picture, gender });
+});
+
+// 修改其他用户信息
+router.post('/editUserInfo', async (ctx, next) => {
+  const { userName, nickName, picture, gender } = ctx.request.body;
+  ctx.body = await changeInfo(ctx, { userName, nickName, picture, gender, type: 'editUserInfo' });
+});
+
+// 添加其他用户信息
+router.post('/addUserInfo', async (ctx, next) => {
+  const { userName, nickName, picture, gender } = ctx.request.body;
+  ctx.body = await changeInfo(ctx, { userName, nickName, picture, gender, type: 'addUserInfo' });
 });
 
 // 修改个人密码
