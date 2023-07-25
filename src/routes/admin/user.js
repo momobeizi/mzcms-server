@@ -10,6 +10,7 @@ const {
   deleteUser,
   getUsersInfo,
   logout,
+  addUserInfo,
 } = require('../../controller/admin/user');
 const { genValidator } = require('../../middlewares/validator');
 const userValidate = require('../../validator/user');
@@ -57,14 +58,14 @@ router.post('/changeInfo', async (ctx, next) => {
 
 // 修改其他用户信息
 router.post('/editUserInfo', async (ctx, next) => {
-  const { userName, nickName, picture, gender } = ctx.request.body;
-  ctx.body = await changeInfo(ctx, { userName, nickName, picture, gender, type: 'editUserInfo' });
+  const { userName, nickName, picture, gender, password } = ctx.request.body;
+  ctx.body = await changeInfo(ctx, { userName, nickName, picture, gender, password });
 });
 
 // 添加其他用户信息
 router.post('/addUserInfo', async (ctx, next) => {
   const { userName, nickName, picture, gender } = ctx.request.body;
-  ctx.body = await changeInfo(ctx, { userName, nickName, picture, gender, type: 'addUserInfo' });
+  ctx.body = await addUserInfo({ userName, nickName, picture, gender });
 });
 
 // 修改个人密码

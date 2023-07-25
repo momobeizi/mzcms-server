@@ -67,6 +67,40 @@ async function register({ userName, password }) {
 }
 
 /**
+ * 后台添加用户
+ * @param {string} userName 用户账号
+ * @param {string} nickName 昵称
+ * @param {string} picture 头像
+ * @param {string} gender 性别
+ * @param {string} password 密码
+ */
+async function addUserInfo({ userName, nickName, picture, gender, password }) {
+  const userInfo = await getUserInfo(userName);
+  // 判断用户名是否存在
+  if (userInfo) {
+    // 用户名已存在
+    return new ErrorModel(registerUserNameExistInfo);
+  }
+
+  // 用户注册
+  try {
+    // 注册成功
+    await createUser({
+      userName,
+      nickName,
+      picture,
+      gender,
+      password: doCrypto(password),
+    });
+    return new SuccessModel();
+  } catch (ex) {
+    // 注册失败
+    console.error(ex.message, ex.stack);
+    return new ErrorModel(registerFailInfo);
+  }
+}
+
+/**
  * 用户登录
  * @param {Object} ctx koa2 ctx上下文
  * @param {string} userName 用户名
@@ -110,11 +144,9 @@ async function logout(ctx) {
  * @param {string} city 城市
  * @param {string} picture 头像
  */
-async function changeInfo(ctx, { userName = '', nickName, picture, gender, type }) {
+async function changeInfo(ctx, { nickName, picture, gender }) {
   // 解析token，获取用户信息
-  if (!userName) {
-    userName = ctx.user;
-  }
+  const { userName } = ctx.user;
   if (!nickName) {
     nickName = userName;
   }
@@ -123,7 +155,6 @@ async function changeInfo(ctx, { userName = '', nickName, picture, gender, type 
       newNickName: nickName,
       newPicture: picture,
       newGender: gender,
-      type,
     },
     { userName }
   );
@@ -219,4 +250,5 @@ module.exports = {
   deleteUser,
   getUsersInfo,
   logout,
+  addUserInfo,
 };
