@@ -1,6 +1,6 @@
 // 引入koa路由  该写法等同于 const Router = require('koa-router'); const router = new Router()
 const router = require('koa-router')();
-const { add, findAll } = require('../../controller/admin/friendlyLinks');
+const { add, findAll, findOne, del, edit } = require('../../controller/admin/friendlyLinks');
 const { genValidator } = require('../../middlewares/validator');
 const friendlyLinksValidate = require('../../validator/content');
 
@@ -22,45 +22,26 @@ router.post('/add', genValidator(friendlyLinksValidate), async (ctx, next) => {
 // 删除文档
 router.post('/delete', genValidator(friendlyLinksValidate), async (ctx, next) => {
   const { id } = ctx.request.body;
-  ctx.body = await deleteContent(ctx, { id });
+  ctx.body = await del(ctx, { id });
 });
 
 // 修改文档
 router.post('/edit', genValidator(friendlyLinksValidate), async (ctx, next) => {
-  const {
+  const { id, linkName, linkUrl, approved, linkSort, remarks } = ctx.request.body;
+  ctx.body = await edit(ctx, {
     id,
-    title,
-    abstract,
-    content,
-    status,
-    contentCategory,
-    keywords,
-    imgUrl,
-    readNum,
-    recommend,
-    label,
-    contentType,
-  } = ctx.request.body;
-  ctx.body = await editContent(ctx, {
-    id,
-    title,
-    abstract,
-    content,
-    status,
-    contentCategory,
-    keywords,
-    imgUrl,
-    readNum,
-    recommend,
-    label,
-    contentType,
+    linkName,
+    linkUrl,
+    approved,
+    linkSort,
+    remarks,
   });
 });
 
 // 查询单条文档
 router.post('/findOne', genValidator(friendlyLinksValidate), async (ctx, next) => {
   const { id } = ctx.request.body;
-  ctx.body = await findOneContent(ctx, {
+  ctx.body = await findOne(ctx, {
     id,
   });
 });

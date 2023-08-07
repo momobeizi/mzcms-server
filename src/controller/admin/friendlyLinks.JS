@@ -1,15 +1,15 @@
 const {
   servicesAdd,
-  servicesDeleteContent,
-  servicesEditContent,
-  servicesFindOneContent,
+  servicesDelete,
+  servicesEdit,
+  servicesFindOne,
   servicesGetList,
 } = require('../../services/admin/friendlyLinks');
 const { SuccessModel, ErrorModel } = require('../../model/ResModel');
 const { addContentFailInfo } = require('../../model/ErrorInfo');
 
 /**
- * 添加文章
+ * 添加
  * @param {object} ctx 上下文
  * @param {string} linkName 名称
  * @param {string} linkUrl url
@@ -38,8 +38,8 @@ async function add(ctx, { linkName, linkUrl, approved, linkSort, remarks }) {
  * @param {object} ctx 上下文
  * @param {string} id 文章id
  */
-async function deleteContent(ctx, { id }) {
-  const result = await servicesDeleteContent({
+async function del(ctx, { id }) {
+  const result = await servicesDelete({
     id,
   });
   if (result) {
@@ -53,48 +53,21 @@ async function deleteContent(ctx, { id }) {
 /**
  * 修改文章
  * @param {object} ctx 上下文
- * @param {string} id 文章id
- * @param {string} title 文章标题
- * @param {string} abstract 摘要
- * @param {string} content 内容
- * @param {string} status 状态
- * @param {string} contentCategory 分类
- * @param {string} keywords 关键字
- * @param {string} imgUrl 封面图片
- * @param {string} readNum 是否推荐
- * @param {string} label 标签
- * @param {string} contentType 文章内容类型
+ * @param {string} id id
+ * @param {string} linkName 名称
+ * @param {string} linkUrl url
+ * @param {string} approved 审核
+ * @param {string} linkSort 排序
+ * @param {string} remarks 备注
  */
-async function editContent(
-  ctx,
-  {
+async function edit(ctx, { id, linkName, linkUrl, approved, linkSort, remarks }) {
+  const result = await servicesEdit({
     id,
-    title,
-    abstract,
-    content,
-    status,
-    contentCategory,
-    keywords,
-    imgUrl,
-    readNum,
-    recommend,
-    label,
-    contentType,
-  }
-) {
-  const result = await servicesEditContent({
-    id,
-    title,
-    abstract,
-    content,
-    status,
-    contentCategory,
-    keywords,
-    imgUrl,
-    readNum,
-    recommend,
-    label,
-    contentType,
+    linkName,
+    linkUrl,
+    approved,
+    linkSort,
+    remarks,
   });
   if (result) {
     // 修改成功
@@ -110,7 +83,7 @@ async function editContent(
  * @param {string} id 父级id
  */
 async function findOne(ctx, { id }) {
-  const result = await servicesFindOneContent({
+  const result = await servicesFindOne({
     id,
   });
   if (result) {
@@ -140,8 +113,8 @@ async function findAll(ctx, { linkName, pageSize, pageNum }) {
 
 module.exports = {
   add,
-  deleteContent,
-  editContent,
+  del,
+  edit,
   findOne,
   findAll,
 };

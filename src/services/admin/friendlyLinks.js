@@ -33,7 +33,7 @@ async function servicesGetList({ linkName = '', pageSize, pageNum }) {
   const { count, rows } = await FriendlyLinks.findAndCountAll({
     attributes: { exclude: ['password'] },
     where: {
-      userName: {
+      linkName: {
         [Op.like]: `%${linkName}%`,
       },
     },
@@ -47,9 +47,9 @@ async function servicesGetList({ linkName = '', pageSize, pageNum }) {
 
 /**
  * 删除友情链接
- * @param {string} id 用户名称
+ * @param {string} id id
  */
-async function servicesDeleteLink({ id }) {
+async function servicesDelete({ id }) {
   // 加入模糊查询
   const result = await FriendlyLinks.destroy({
     where: {
@@ -61,8 +61,51 @@ async function servicesDeleteLink({ id }) {
   }
 }
 
+/**
+ * 编辑链接
+ * @param { string } id id
+ */
+async function servicesEdit({ id, linkName, approved, linkUrl, linkSort, linkStatus }) {
+  console.log(approved);
+  // 加入模糊查询
+  const result = await FriendlyLinks.update(
+    {
+      linkName,
+      approved,
+      linkUrl,
+      linkSort,
+      linkStatus,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+  if (result) {
+    return {};
+  }
+}
+
+/**
+ * 查询单条
+ * @param {string} id id
+ */
+async function servicesFindOne({ id }) {
+  const result = await FriendlyLinks.findOne({
+    where: {
+      id,
+    },
+  });
+  if (result) {
+    return handlerRows(result);
+  }
+}
+
 module.exports = {
   servicesAdd,
   servicesGetList,
-  servicesDeleteLink,
+  servicesDelete,
+  servicesEdit,
+  servicesFindOne,
 };
