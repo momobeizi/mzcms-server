@@ -10,7 +10,7 @@ const { handlerRows } = require('../_format');
  * @param {string} linkSort 友链排序
  * @param {string} remarks 友链备注
  */
-async function createFriendlyLink({ linkUrl, linkName, approved = 0, linkSort, remarks }) {
+async function servicesAdd({ linkUrl, linkName, approved = 0, linkSort, remarks }) {
   // 插入数据
   const result = await FriendlyLinks.create({
     linkUrl,
@@ -62,7 +62,7 @@ async function servicesDeleteLink({ id }) {
 }
 
 module.exports = {
-  createFriendlyLink,
+  servicesAdd,
   servicesGetList,
   servicesDeleteLink,
 };
